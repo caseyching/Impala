@@ -361,14 +361,14 @@ class ExprTest : public testing::Test {
         + ", 'yyyy-MM-dd')", "1970-01-01");
     TestStringValue("from_unixtime(cast(" + lexical_cast<string>(unix_time_at_local_epoch)
         + " as bigint), 'yyyy-MM-dd')", "1970-01-01");
-    TestIsNull("to_timestamp(NULL)", TYPE_STRING);
-    TestIsNull("to_timestamp(NULL, 'yyyy-MM-dd')", TYPE_STRING);
+    TestIsNull("to_timestamp(NULL)", TYPE_TIMESTAMP);
+    TestIsNull("to_timestamp(NULL, 'yyyy-MM-dd')", TYPE_TIMESTAMP);
     TestIsNull("from_timestamp(NULL, 'yyyy-MM-dd')", TYPE_STRING);
     TestStringValue("cast(to_timestamp(" + lexical_cast<string>(unix_time_at_local_epoch)
         + ") as string)", "1970-01-01 00:00:00");
-    TestStringValue("cast(to_timestamp(" + local_time_at_unix_epoch + ", 'yyyy-MM-dd') \
+    TestStringValue("cast(to_timestamp('" + local_time_at_unix_epoch + "', 'yyyy-MM-dd') \
         as string)", "1970-01-01");
-    TestStringValue("from_timestamp(" + local_time_at_unix_epoch + ", 'yyyy-MM-dd')",
+    TestStringValue("from_timestamp('" + local_time_at_unix_epoch + "', 'yyyy-MM-dd')",
         "1970-01-01");
   }
 

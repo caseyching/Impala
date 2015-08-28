@@ -193,7 +193,7 @@ BigIntVal TimestampFunctions::Unix(FunctionContext* context) {
   return BigIntVal(context->impl()->state()->now()->ToUnixTime());
 }
 
-inline TimestampVal TimestampFunctions::ToTimestamp(FunctionContext* context,
+TimestampVal TimestampFunctions::ToTimestamp(FunctionContext* context,
     const BigIntVal& bigint_val) {
   if (bigint_val.is_null) return TimestampVal::null();
   TimestampValue tv(bigint_val.val);
